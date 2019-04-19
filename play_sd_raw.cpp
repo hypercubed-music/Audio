@@ -24,9 +24,7 @@
  * THE SOFTWARE.
  */
 
-#if defined(ARDUINO_ARCH_SAMD)
 #include <Arduino.h>
-#endif
 
 #include "play_sd_raw.h"
 #include "spi_interrupt.h"

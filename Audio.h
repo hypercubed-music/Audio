@@ -27,7 +27,7 @@
 #ifndef Audio_h_
 #define Audio_h_
 
-#if 0
+#if !defined(__SAMD51__)
 
 #if TEENSYDUINO < 120
 #error "Teensyduino version 1.20 or later is required to compile the Audio library."
@@ -43,7 +43,7 @@
 #error "https://github.com/PaulStoffregen/cores/blob/master/teensy3/DMAChannel.cpp"
 #endif
 
-#endif //0
+#endif //SAMD51
 
 // When changing multiple audio object settings that must update at
 // the same time, these functions allow the audio library interrupt
@@ -75,6 +75,7 @@
 #include "control_ak4558.h"
 #include "control_cs4272.h"
 #include "control_cs42448.h"
+#include "control_tlv320aic3206.h"
 #include "effect_bitcrusher.h"
 #include "effect_chorus.h"
 #include "effect_fade.h"
@@ -86,7 +87,10 @@
 
 #include "effect_midside.h"
 #include "effect_reverb.h"
+#include "effect_freeverb.h"
 #include "effect_waveshaper.h"
+#include "effect_granular.h"
+#include "effect_combine.h"
 #include "filter_biquad.h"
 #include "filter_fir.h"
 #include "filter_variable.h"
@@ -96,38 +100,47 @@
 #include "input_i2s.h"
 #endif
 
-#if 0
-#include "input_adc.h"
-#include "input_i2s_quad.h"
-#include "input_tdm.h"
-#endif //0
-
+#if !defined(__SAMD51__)
+  #include "input_adc.h"
+  #include "input_i2s_quad.h"
+  #include "input_tdm.h"
+  #include "input_tdm2.h"
+  #include "input_pdm.h"
+#endif
 #include "mixer.h"
 #include "output_dacs.h"
 
 #if I2S_INTERFACES_COUNT > 0
-#include "output_i2s.h"
+  #include "output_i2s.h"
 #endif
 
-#if 0
-#include "output_dac.h"
-#include "output_i2s_quad.h"
-#include "output_pwm.h"
-#include "output_spdif.h"
-#include "output_pt8211.h"
-#include "output_tdm.h"
-#endif //0
+#if !defined(__SAMD51__)
+  #include "output_dac.h"
+  #include "output_i2s2.h"
+  #include "output_i2s_quad.h"
+  #include "output_mqs.h"
+  #include "output_pwm.h"
+  #include "output_spdif.h"
+  #include "output_spdif2.h"
+  #include "output_spdif3.h"
+  #include "output_pt8211.h"
+  #include "output_pt8211_2.h"
+  #include "output_tdm.h"
+  #include "output_tdm2.h"
+  #include "output_adat.h"
+#else
+  #include "play_qspi_wav.h"
+#endif 
 
 #include "play_memory.h"
 #include "play_queue.h"
 
 #include "play_sd_raw.h"
 #include "play_sd_wav.h"
-#include "play_qspi_wav.h"
 
-#if 0
-#include "play_serialflash_raw.h"
-#endif //0
+#if !defined(__SAMD51__)
+  #include "play_serialflash_raw.h"
+#endif
 
 #include "record_queue.h"
 #include "synth_tonesweep.h"
@@ -139,5 +152,6 @@
 #include "synth_karplusstrong.h"
 #include "synth_simple_drum.h"
 #include "synth_pwm.h"
+#include "synth_wavetable.h"
 
 #endif

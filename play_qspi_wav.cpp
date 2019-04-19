@@ -1,3 +1,5 @@
+#if defined(__SAMD51__)
+
 #include "play_qspi_wav.h"
 
 #define STATE_DIRECT_8BIT_MONO		0  // playing mono at native sample rate
@@ -133,3 +135,5 @@ cleanup:
 		block_right = NULL;
 	}
 }
+
+#endif

@@ -24,10 +24,11 @@
  * THE SOFTWARE.
  */
 
+#include <Arduino.h>
 #include "analyze_tonedetect.h"
 #include "utility/dspinst.h"
 
-#if defined(KINETISK) || defined(__SAMD51__)
+#if defined(__ARM_ARCH_7EM__) || defined(__SAMD51__)
 
 static inline int32_t multiply_32x32_rshift30(int32_t a, int32_t b) __attribute__((always_inline));
 static inline int32_t multiply_32x32_rshift30(int32_t a, int32_t b)

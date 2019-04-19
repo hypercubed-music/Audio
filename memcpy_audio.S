@@ -1,5 +1,5 @@
 /* Teensyduino Audio Memcpy
- * Copyright (c) 2016 Frank Bösing
+ * Copyright (c) 2016, 2017, 2018, 2019 Frank Bösing
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,15 +27,14 @@
  * SOFTWARE.
  */
 
-#if defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MK64FX512__) || defined(__MK66FX1M0__) || defined(__SAMD51__)
+#if defined (__ARM_ARCH_7EM__) || defined(__SAMD51__)
 
-#include "AudioStream.h"
+#include <AudioStream.h>
 
 .cpu cortex-m4
 .syntax unified
 .thumb
 .text
-.align	2
 
 /* void memcpy_tointerleave(short *dst, short *srcL, short *srcR); */
  .global	memcpy_tointerleaveLR
